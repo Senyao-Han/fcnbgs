@@ -31,8 +31,13 @@ class DataLoader:
         self.batch_idx = 0
 
         #threads
-        self.num_threads = 4
+        self.num_threads = 8
         self.each_thread = self.batch_size/self.num_threads
+
+    def reset(self):
+        self.series_idx = 0
+        self.idx = [0 for x in self.series]
+        self.batch_idx = 0
 
     def next_batch_threading(self):
         batch_x = np.zeros([self.batch_size, self.height, self.width, 3], dtype='uint8')
